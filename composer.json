@@ -1,6 +1,7 @@
 {
   "name": "niesai/tbk-union-sdk",
   "license": "MIT",
+  "minimum-stability": "dev",
   "authors": [
     {
       "name": "niesai",
