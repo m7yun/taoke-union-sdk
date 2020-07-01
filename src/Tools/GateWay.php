@@ -63,7 +63,7 @@ class GateWay
         $sysParams["timestamp"] = \date("Y-m-d H:i:s");
         $sysParams["sign"] = $this->generateSign(array_merge($params, $sysParams), $this->globalConfig['secretKey']);
         $requestUrl = $this->unionUrl . '?' . http_build_query($sysParams);
-		$resp = Http::post($requestUrl, $params);
+		$resp = Http::sendRequest($requestUrl, $params);
 		if($resp['ret']) {
 			$info = json_decode($resp['msg'], true);
 			if ($this->globalConfig['sandbox']) {
