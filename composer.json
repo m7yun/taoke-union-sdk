@@ -1,10 +1,10 @@
 {
-  "name": "yumufeng/tbk-union-sdk",
+  "name": "niesai/tbk-union-sdk",
   "license": "MIT",
   "authors": [
     {
-      "name": "yumufeng",
-      "email": "admin@yumufeng.com"
+      "name": "niesai",
+      "email": "410608130@qq.com"
     }
   ],
   "require": {
