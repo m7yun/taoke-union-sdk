@@ -5,7 +5,7 @@ namespace TaobaoUnionSdk\Tools;
 
 
 use TaobaoUnionSdk\TbkFatory;
-use yumufeng\curl\Curl;
+use TaobaoUnionSdk\Tools\Http;
 
 class GateWay
 {
@@ -63,23 +63,23 @@ class GateWay
         $sysParams["timestamp"] = \date("Y-m-d H:i:s");
         $sysParams["sign"] = $this->generateSign(array_merge($params, $sysParams), $this->globalConfig['secretKey']);
         $requestUrl = $this->unionUrl . '?' . http_build_query($sysParams);
-        try {
-            $resp = Curl::curl_post($requestUrl, $params);
-            $info = json_decode($resp, true);
-            if ($this->globalConfig['sandbox']) {
-                var_dump($info);
-            }
-            if (isset($info['error_response'])) {
-                $code = isset($info['error_response']['sub_code']) ? $info['error_response']['sub_code'] : $info['error_response']['code'];
-                $msg = isset($info['error_response']['sub_msg']) ? $info['error_response']['sub_msg'] : $info['error_response']['msg'];
-                $this->tbkFatory->setError($code . ' ' . $msg);
-                return false;
-            }
-            return \current($info);
-        } catch (\Exception $exception) {
-            $this->tbkFatory->setError($exception->getMessage());
-            return false;
-        }
+		$resp = Http::post($requestUrl, $params);
+		if($resp['ret']) {
+			$info = json_decode($resp['msg'], true);
+			if ($this->globalConfig['sandbox']) {
+			    var_dump($info);
+			}
+			if (isset($info['error_response'])) {
+			    $code = isset($info['error_response']['sub_code']) ? $info['error_response']['sub_code'] : $info['error_response']['code'];
+			    $msg = isset($info['error_response']['sub_msg']) ? $info['error_response']['sub_msg'] : $info['error_response']['msg'];
+			    $this->tbkFatory->setError($code . ' ' . $msg);
+			    return false;
+			}
+			return \current($info);
+		} else {
+			$this->tbkFatory->setError($resp['msg']);
+			return false;
+		}
     }
 
     private function generateSign(array $attributes, $secretKey)
