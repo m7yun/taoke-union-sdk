@@ -22,5 +22,10 @@
       "type": "composer",
       "url": "https://mirrors.aliyun.com/composer/"
     }
+  },
+  "extra": {
+	  "branch-alias": {
+		  "dev-master": "1.0.0"
+	  }
   }
 }
