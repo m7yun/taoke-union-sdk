@@ -4,9 +4,7 @@
 
 PHP =>7.0
 
-`composer require yumufeng/tbk-union-sdk`
-
-如果是在swoole 扩展下使用，支持协程并发，需要在编译swoole扩展的时候开启，系统会自动判断是否采用swoole
+`composer require niesai/tbk-union-sdk`
 
 ```./configure --enable-openssl```
 
