@@ -15,16 +15,6 @@ class GateWay
      * @var string 淘宝联盟官网URL
      */
     protected $unionUrl = 'https://eco.taobao.com/router/rest';
-    /**
-     * @link https://open.21ds.cn/index/index/openapi/id/72.shtml
-     * @var string 21ds.cn 喵有券
-     */
-    protected $authUrl = 'https://api.open.21ds.cn/apiv1/';
-    /**
-     * 是否是Auth
-     * @var bool
-     */
-    protected $isAuth = false;
 
     /**
      * 配置
